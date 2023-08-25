@@ -50,7 +50,7 @@ const { createClient } = require("redis");
 /**
  * Represents a Base class that extends the Transform class from the stream module.
  */
-class Base extends Transform {
+class Controller extends Transform {
   /**
    * Constructs a new instance of the Base class.
    *
@@ -69,10 +69,10 @@ class Base extends Transform {
     });
 
     // Auto bind methods of the base class
-    this.autobind(Base);
+    this.autobind(Controller);
 
     // Auto invoke methods of the base class
-    this.autoinvoker(Base);
+    this.autoinvoker(Controller);
 
     // Add methods from other classes if they do not already exist
     // Example: this.methodizer(...classList);
@@ -188,7 +188,7 @@ class Base extends Transform {
  */
   getFromIterable(iterable = {} | [], options = { objectMode: true, encoding: 'utf-8', autoDestroy: true }) {
     // Convert the iterable to a JSON string and use the 'Base.from' method to create a readable stream
-    return Base.from(JSON.stringify(iterable), options);
+    return Controller.from(JSON.stringify(iterable), options);
   }
 
 
@@ -982,6 +982,6 @@ class Base extends Transform {
   _destroy(error, fn = () => { }) { }
 }
 
-module.exports = Base;
+module.exports = Controller;
 
 
