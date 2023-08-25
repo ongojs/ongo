@@ -20,9 +20,11 @@ const {
 } = require("fs");
 const { join } = require("path");
 const { Readable } = require("stream");
-const { readdirRecursive } = require("lib");
+const { readdirRecursive } = require("./lib");
 
-const HTTPController = require("http-controller");
+const {Green, Red} = require('../couleurs')()
+
+const HTTPController = require("../http-controller");
 
 const httpController = new HTTPController();
 
@@ -85,7 +87,7 @@ class HTTPRoute extends require("../base") {
   async makedir(command) {
     if (this.direxists(command)) {
       if (this.routerexists(command)) {
-        console.log(command.split("/").pop(), "Router Already Exits");
+        console.log(Red(command.split("/").pop()), Red("Router Already Exits"));
       } else {
         try {
           await promises.mkdir(this.routerdirpath(command), {
@@ -113,16 +115,16 @@ class HTTPRoute extends require("../base") {
     // //  return console.log('create', command)
     if (this.direxists(command)) {
       if (this.routerexists(command)) {
-        console.log(command.split("/").pop(), "Router Already Exits");
+        console.log(Red(command.split("/").pop()), Red("Route Already Exits"));
       } else {
         await this.makedir(command);
         this.makeController(command, data);
-        return console.log(command.split("/").pop(), "Router has been created");
+        return console.log(Green(command.split("/").pop()), Green("Route Created"));
       }
     } else {
       await this.makedir(command);
       this.makeController(command, data);
-      return console.log(command.split("/").pop(), "Router has been created");
+      return console.log(Green(command.split("/").pop()), Green("Route Created"));
     }
   }
   tplOptions(command, path = ``) {

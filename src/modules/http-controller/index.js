@@ -15,7 +15,9 @@
 const {createWriteStream, promises, existsSync} = require('fs');
 const {join} = require('path');
 const {Readable} = require('stream')
-class HTTPController extends require("./base") {
+
+const {Green, Red} = require('../couleurs')();
+class HTTPController extends require("../base") {
 
   constructor(...arrayOfObjects) {
 
@@ -64,7 +66,7 @@ class HTTPController extends require("./base") {
   async makedir(command){
     if(this.direxists(command)){
         if(this.ctrlexists(command)){
-            return console.log(command.split('/').pop(), 'Controller Already Exits')
+            return console.log(Red(command.split('/').pop()), Red('Controller Already Exits'))
             
         }else{
             try{
@@ -90,13 +92,13 @@ class HTTPController extends require("./base") {
      if(this.direxists(command)){
         if(this.ctrlexists(command)){
             
-            return console.log(command.split('/').pop(), 'Controller Already Exits')
+            return console.log(Red(command.split('/').pop()), Red('Controller Already Exits'))
             
         }else{
             await this.makedir(command);
             this.makeController(command, data);
             this.emit('makeController', command)
-            return console.log(command.split('/').pop(), 'Controller has been created');
+            return console.log(Green(command.split('/').pop()), Green('Controller has been created'));
             // return console.log(`[\x1b[34m${command.split('/').pop()}, 'Controller has been created'\x1b[0m`)
         }
      }else{
@@ -105,7 +107,7 @@ class HTTPController extends require("./base") {
         this.makeController(command, data);
         this.emit('makeController', command)
         // return console.log(`[\x1b[34m${command.split('/').pop()}, 'Controller has been created'\x1b[0m`)
-        return console.log(command.split('/').pop(), 'Controller has been created');
+        return console.log(Green(command.split('/').pop()),Green('Controller has been created'));
      }
 
   }
