@@ -1,3 +1,0 @@
-1. start a server 
-2. start a client 
-3.  
