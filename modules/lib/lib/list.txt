@@ -1,0 +1,15 @@
+1. plural 
+2. filesystem tranversing
+3. streams:
+   1. Transform
+   2. readable 
+   3. writeable 
+   4. duplex 
+   5. createReadStream,
+   6. createWriteStream,
+   5. zipping and unziping 
+4. Doing things once 
+5. High Order function: 
+    1. find 
+    2. map 
+    3. findIndex

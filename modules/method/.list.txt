@@ -1,0 +1,15 @@
+1. model-method 
+2. model-method --list 
+3. model-method --name=methodName 
+4. model-method -n methodName 
+5. model-method --name=methodName --info 
+6. model-method --name=methodName -i 
+7. model-method -n methodName --info 
+8. model-method -n methodName -i 
+9. model-method man 
+
+  "@mongodb-model/app": "^0.0.100015",
+  "@mongodb-model/db-callback": "^0.0.0",
+  "@mongodb-model/db-query": "^0.0.10000",
+  "@mongodb-model/db-query-validator": "^0.0.0",
+

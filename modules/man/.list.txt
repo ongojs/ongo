@@ -1,0 +1,24 @@
+1.  model man 
+2.  model --help 
+3.  model -h 
+4.  model -m 
+5.  model --list 
+6.  model -l 
+7.  model method 
+8.  model method --list 
+9.  model method -l
+10. model method --name model_name
+11. model method --name model_name --info 
+12. model method --name model_name -i 
+13. model method -n model_name 
+14. model method -n model_name --info 
+15. model method -n model_name -i 
+16. model make:model model_name
+23. model make:schema schema_name
+24. model --schema=schema_name 
+25. model make:migration migration_name
+26. model --migration=migration_name 
+27. model migrate
+28. model migrate --schema=schema_name 
+
+

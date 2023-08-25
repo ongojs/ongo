@@ -1,0 +1,20 @@
+{
+  "name": "method",
+  "version": "1.0.0",
+  "description": "model method",
+  "main": "index.js",
+  "bin": {
+    "method": "bin/index.js"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "model"
+  ],
+  "author": "Ericson S. Weah <ericson.weah@gmail.com> (https://www.ericsonweah.com/)",
+  "license": "MIT"
+}
