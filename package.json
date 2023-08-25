@@ -17,7 +17,7 @@
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^9.0.1",
     "mailgun-js": "^0.22.0",
-    "mongodb": "^5.5.0",
+    "mongodb": "^5.8.1",
     "morgan": "~1.9.1",
     "openai": "^4.2.0",
     "redis": "^4.6.6",
@@ -28,7 +28,9 @@
   "devDependencies": {
     "@vitest/coverage-v8": "^0.34.1",
     "@vitest/ui": "^0.34.1",
-    "jest": "^29.5.0",
-    "vitest": "^0.34.1"
+    "dotenv": "^16.3.1",
+    "jest": "^29.6.4",
+    "supertest": "^6.3.3",
+    "vitest": "^0.34.2"
   }
 }
