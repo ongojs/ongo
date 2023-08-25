@@ -138,7 +138,7 @@ class CLI extends require("../src/modules/base") {
       case "make":
         HTTPControllerModule(this.command);
         HTTPRouteMakerModule(this.command);
-        TCPControllerModule(this.command)
+        TCPControllerModule(this.command);
         break;
       default:
         console.log("invalid command ...");
@@ -160,8 +160,6 @@ class CLI extends require("../src/modules/base") {
   autoinvoked() {
     return ["init"];
   }
-
-
 }
 
 module.exports = new CLI;
