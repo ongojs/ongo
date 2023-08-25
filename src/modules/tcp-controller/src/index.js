@@ -15,7 +15,8 @@
 const {createWriteStream, promises, existsSync} = require('fs');
 const {join} = require('path');
 const {Readable} = require('stream')
-class HTTPController extends require("../base") {
+const {Green, Red} = require('../../couleurs')();
+class HTTPController extends require("../../base") {
 
   constructor(...arrayOfObjects) {
 
@@ -64,7 +65,7 @@ class HTTPController extends require("../base") {
   async makedir(command){
     if(this.direxists(command)){
         if(this.ctrlexists(command)){
-            console.log(command.split('/').pop(), 'Controller Already Exits')
+            console.log(Red(command.split('/').pop()), Red('Controller Already Exits'))
         }else{
             try{
               await promises.mkdir(this.ctrldirpath(command), {recursive: true})
@@ -88,19 +89,19 @@ class HTTPController extends require("../base") {
 
      if(this.direxists(command)){
         if(this.ctrlexists(command)){
-            console.log(command.split('/').pop(), 'Controller Already Exits')
+            console.log(Red(command.split('/').pop()), Red('Controller Already Exits'))
         }else{
             await this.makedir(command);
             this.makeController(command, data);
             this.emit('makeController', command)
-            return console.log(command.split('/').pop(), 'Controller has been created');
+            return console.log(Green(command.split('/').pop()), Green('Controller Created'));
         }
      }else{
 
         await this.makedir(command);
         this.makeController(command, data);
         this.emit('makeController', command)
-        return console.log(command.split('/').pop(), 'Controller has been created');
+        return console.log(Green(command.split('/').pop()), Green('Controller Created'));
      }
 
   }

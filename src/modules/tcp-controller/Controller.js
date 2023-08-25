@@ -11,7 +11,7 @@
  * @classdesc Controller class
  */
 
- class Controller extends require("./base") {
+ class Controller extends require("../base") {
   constructor(...arrayOfObjects) {
 
       super({ objectMode: true, encoding: "utf-8", autoDestroy: true });

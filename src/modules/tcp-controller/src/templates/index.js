@@ -12,7 +12,7 @@ module.exports  = (options = {}) => `"use strict";
  * @classdesc ${options.name} class
  */
 
-class ${options.name} extends require("controller") {
+class ${options.name} extends require("${options.path}") {
     constructor(...arrayOfObjects) {
 
         super({ objectMode: true, encoding: "utf-8", autoDestroy: true });

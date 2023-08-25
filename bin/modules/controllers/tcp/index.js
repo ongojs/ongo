@@ -1,5 +1,5 @@
-'use strict';
-const Controller = require('../../../../src/modules/http-controller/src');
+'use strict'
+const Controller = require('../../../../src/modules/tcp-controller/src');
 const { Red } = require('../../../../src/modules/couleurs')();
 /*
 |------------------------------------------------------------------------------------
@@ -29,25 +29,27 @@ const { Red } = require('../../../../src/modules/couleurs')();
 
     |
     */
-    const HTTPController = (fnCommand = () => { }) => {
-        switch (fnCommand(3)) {
-            case "controller":
-                const { make } = new Controller({ command: fnCommand(3) })
-                if (fnCommand(4)) {
-                    if (fnCommand(5)) {
-                        console.log(Red('EXTRA OPTIONS ARE NOT ALLOWED'));
+
+        const TCPController = (fnCommand = () => { }) => {
+            switch (fnCommand(3)) {
+                case "tcp:controller":
+                    const { make } = new Controller({ command: fnCommand(3) })
+                    if (fnCommand(4)) {
+                        if (fnCommand(5)) {
+                            console.log(Red('EXTRA OPTIONS ARE NOT ALLOWED'));
+                        } else {
+                            make(fnCommand(4))
+                        }
                     } else {
-                        make(fnCommand(4))
+                        //console.log(Red('make controller command'))
                     }
-                } else {
-                    console.log(Red('make controller command'))
-                }
-                break;
-            default:
-                //console.log(Red("invalid make command ..."));
-                break;
+                    break;
+                default:
+                    //console.log(Red("invalid make command ..."));
+                    break;
+            }
         }
-    }
+
     /*
     |----------------------------------------------------------------------------------
     | EXPORTS MODULE IN NODEJS ENVIRONMENTS
@@ -55,12 +57,12 @@ const { Red } = require('../../../../src/modules/couleurs')();
     |
     | The module is exported using an if/else statement. If the module object is defined and
     | has an exports property, then the module is being used in Node.js and we export 
-    | the HTTPController object by assigning it to module.exports
+    | the TCPController object by assigning it to module.exports
     |
     |
     */
-
-    if (typeof module !== 'undefined' && module.exports) module.exports = HTTPController;
+    
+    if (typeof module !== 'undefined' && module.exports)  module.exports = TCPController;
 
     /*
     |----------------------------------------------------------------------------------------
@@ -69,9 +71,9 @@ const { Red } = require('../../../../src/modules/couleurs')();
     |
     | If module is not defined or does not have an exports property, then the module is being used
     | in the browser and we attach the myModule object to the global object (which is the window object
-    | in the browser) by assigning it to global.HTTPController.
+    | in the browser) by assigning it to global.TCPController.
     |
     */
 
-    else global.HTTPController = HTTPController;
+    else global.TCPController = TCPController;
 })(this)

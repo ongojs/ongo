@@ -1,7 +1,6 @@
 "use strict";
 
 /**
- * @author Ericson S. Weah  <ericson.weah@gmail.com> <https://github.com/eweah>  <+1.385.204.5167>
  *
  * @module Controller
  * @kind class
