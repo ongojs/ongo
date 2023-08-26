@@ -45,10 +45,8 @@
   },
   "scripts": {
     "test": "vitest --globals",
-    "serve": "nodemon server.js",
-    "local": "nodemon index.js",
-    "dev": "node ./bin/www",
-    "start" : "nodemon main"
+    "start": "node ./bin/www",
+    "dev" : "nodemon server"
   },
   "repository": {
     "type": "git",

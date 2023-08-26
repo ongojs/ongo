@@ -21,7 +21,7 @@ module.exports = (io) => {
   // undefined namespace
   const HomeNamespace = io.of("/home");
 
-  // subscription
+  // subscribing
   const sub = new Redis();
   // publishing
   const pub = new Redis();
