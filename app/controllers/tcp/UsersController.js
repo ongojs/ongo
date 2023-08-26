@@ -58,6 +58,26 @@ class UsersController extends require("../Controller") {
         country: 'United States',
         city: 'Salt Lake City',
     })
+
+    socket.on('chat message', data => {
+        console.log('chat message', data)
+        io.emit('chat', {message: 'Ok cool', userId: 1})
+    })
+
+    sub.on("subscribe", function(channel, count) {
+        console.log("Subscribed to " + channel + ". Now subscribed to " + count + " channel(s).");
+    });
+    
+    sub.on("message", function(channel, message) {
+        console.log("Message from channel " + channel + ": " + message);
+    });
+    
+    sub.subscribe("tungns");
+    
+    setInterval(function() {
+        var no = Math.floor(Math.random() * 100);
+        pub.publish('tungns', 'Generated Chat random no ' + no);
+    }, 5000);
   }
 
   /**

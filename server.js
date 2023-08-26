@@ -10,16 +10,7 @@ const cors = require("cors");
 const {renderFile} = require('ejs')
 
 
-
-const { Server } = require("socket.io");
-const { createAdapter } = require("@socket.io/redis-adapter");
-const { createClient } = require("redis");
-
-
-
-
-
-require('dotenv').config();
+require('./src/modules/dotenv').config();
 require('./config')()
 const port = 3000 | process.env.PORT || process.env.SERVER_PORT;
 

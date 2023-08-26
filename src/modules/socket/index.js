@@ -47,7 +47,7 @@ const { createClient } = require("redis");
     const socket = (server = {}, options = serverOptions()) => {
 
         // Create a Redis pub client and a duplicated sub client
-        const pubClient = createClient({ url: "redis://localhost:6379" });
+        const pubClient = createClient({ url: "redis://localhost:6379", legacyMode: true });
         const subClient = pubClient.duplicate();
 
         // Create a new socket.io server instance and pass in the server and options
