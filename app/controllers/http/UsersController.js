@@ -52,7 +52,7 @@ class UsersController extends require("../Controller") {
    */
 
      async index(req, res, next) {
-      res.render('index', {user: []});
+      res.render('index', {user: [], title: 'Welcome!'});
      }
     
     
