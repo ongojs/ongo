@@ -1,6 +1,3 @@
 'use strict';
-if (require("cluster").isMaster) {
-    require('./master')();
-} else {
-    require('./cluster')()
-}
+
+require("cluster").isMaster ? require('./master')() : require('./cluster')();
