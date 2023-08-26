@@ -66,7 +66,6 @@ class HTTPController extends require("../base") {
     if(this.direxists(command)){
         if(this.ctrlexists(command)){
             return console.log(Red(command.split('/').pop()),Red('Controller Already Exits'))
-            
         }else{
             try{
               await promises.mkdir(this.ctrldirpath(command), {recursive: true})
@@ -90,14 +89,13 @@ class HTTPController extends require("../base") {
 
      if(this.direxists(command)){
         if(this.ctrlexists(command)){
-            
             return console.log(Red(command.split('/').pop()), Red('Controller Already Exits'))
             
         }else{
             await this.makedir(command);
             this.makeController(command, data);
             this.emit('makeController', command)
-            return console.log(Red(command.split('/').pop()), Red('Controller Already Exits'));
+            return console.log(Green(command.split('/').pop()), Green('Controller has been created'));
             // return console.log(`[\x1b[34m${command.split('/').pop()}, 'Controller has been created'\x1b[0m`)
         }
      }else{

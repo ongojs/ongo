@@ -87,7 +87,7 @@ class HTTPRoute extends require("../base") {
   async makedir(command) {
     if (this.direxists(command)) {
       if (this.routerexists(command)) {
-        console.log(Red(command.split("/").pop()), Red("Router Already Exits"));
+        return console.log('HTTP', Red(command.split("/").pop()), Red("Router Already Exits"));
       } else {
         try {
           await promises.mkdir(this.routerdirpath(command), {
@@ -115,7 +115,7 @@ class HTTPRoute extends require("../base") {
     // //  return console.log('create', command)
     if (this.direxists(command)) {
       if (this.routerexists(command)) {
-        console.log(Red(command.split("/").pop()), Red("Route Already Exits"));
+        return console.log('HTTP', Red(command.split("/").pop()), Red("Route Already Exits"));
       } else {
         await this.makedir(command);
         this.makeController(command, data);

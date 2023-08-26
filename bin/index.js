@@ -46,6 +46,7 @@
 const HTTPControllerModule = require('./modules/controllers/http')
 const TCPControllerModule = require('./modules/controllers/tcp')
 const HTTPRouteMakerModule = require('./modules/routes/http/route-maker')
+const TCPRouteMakerModule = require('./modules/routes/tcp/route-maker')
 // const {ModelCommand} = require('../lib')().Commands()
 /**
  * Represents a CLI class that extends the Base class.
@@ -139,6 +140,7 @@ class CLI extends require("../src/modules/base") {
         HTTPControllerModule(this.command);
         HTTPRouteMakerModule(this.command);
         TCPControllerModule(this.command);
+        TCPRouteMakerModule(this.command);
         break;
       default:
         console.log("invalid command ...");
