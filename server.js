@@ -3,6 +3,7 @@ const path = require('path');
 const express = require("express");
 const cluster = require("cluster");
 const { createServer } = require("net");
+const http = require("http");
 const farmhash = require("farmhash");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -10,9 +11,17 @@ const {renderFile} = require('ejs')
 
 
 
+const { Server } = require("socket.io");
+const { createAdapter } = require("@socket.io/redis-adapter");
+const { createClient } = require("redis");
+
+
+
+
+
 require('dotenv').config();
 require('./config')()
-const port = 8080 | process.env.PORT || process.env.SERVER_PORT;
+const port = 3000 | process.env.PORT || process.env.SERVER_PORT;
 
 const num_processes = require("os").cpus().length;
 
@@ -84,12 +93,13 @@ if (cluster.isMaster) {
     optionSuccessStatus: 200,
   };
 
-  app.use(cors(corsOptions));
-  const routes = require("./routes");
+ app.use(cors(corsOptions));
+  require("./routes")(app)
+  // const routes = require("./routes");
   // Mount Web Routes (HTTP routes to main app)
-  app.use(routes);
+  // app.use(require("./routes"));
 app.get('/', (req, res, next) => {
-    res.send('it works');
+    res.render('index');
 })
 
 
@@ -98,16 +108,16 @@ app.get('/', (req, res, next) => {
   // Also, attach two callback functions to handle the response.
 
   // Don't expose internal server to the outside.
-  const server = app.listen(0, "localhost");
+  // const server = app.listen(0, "localhost");
 
-
+  const server = http.createServer(app);
 
   // Mount TCP Routes (sockets) to main app
-//   require("./sockets")(server);
+  require('./sockets')(server)
 
-const sockets = require('./sockets');
-
-console.log(sockets())
+  // Don't expose internal server to the outside.
+  server.listen(0, "localhost");
+ 
 
   // Here you might use Socket.IO middleware for authorization etc.
 

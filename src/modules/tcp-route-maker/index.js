@@ -366,10 +366,8 @@ readdirRecursive(path)
   routesIndex() {
     readdirRecursive('./sockets').then(files => {
       const writeable = createWriteStream('./sockets/index.js');
-      writeable.write(`'use strict';
-
-const sio_redis = require("socket.io-redis");
-const Socket = require("socket");
+      writeable.write(`'use strict' \n
+const socket = require('../src/modules/socket');
 
 /*
 |--------------------------------------------------------------------------
@@ -396,16 +394,17 @@ const Socket = require("socket");
        writeable.write(`\n`)
        writeable.write(`module.exports = server => {
         `)
-        writeable.write(`\n    `)
-        writeable.write(` // build io \n`)
-        writeable.write(`    const io = new Socket(server).adapter(sio_redis({ host: "localhost", port: 6379 }))`)
-        writeable.write(`\n    `)
-        writeable.write(`\n    `)
+        writeable.write(`\n `)
+        writeable.write(` // Configuration options for socket.io, the io \n`)
+        writeable.write(`  const io = socket(server); // socket(server = {}, options = {}) \n `)
+
+  writeable.write(`\n`)
+  writeable.write(`  // import routes \n`)
        for(let file of files){
         // writeable.write(`${file.split('/').pop().split('.js').join('')}(app);        \n    `)
         if(file.split('/').pop().split('.js').join('') !== 'index'){
           // writeable.write(`require(".${file.split('.js').join('')}")(io);        \n    `)
-          writeable.write(`require(".${file.split('.js').join('').split('sockets')[1]}")(io);        \n    `)
+          writeable.write(`  require(".${file.split('.js').join('').split('sockets')[1]}")(io);        \n    `)
         }
        }
     
