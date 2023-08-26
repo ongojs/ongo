@@ -13,13 +13,34 @@ const cookieParser = require('cookie-parser');
 const { renderFile } = require('ejs')
 const debug = require('debug')('ongo:server');
 
-
 require('./src/modules/dotenv').config();
 require('./config')()
 
-const Port = 3000 | process.env.PORT || process.env.SERVER_PORT;
+
+/**
+* Normalize a port into a number, string, or false.
+*/
+
+function normalizePort(val) {
+    const port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+
+const port = normalizePort(process.env.PORT || '3000' || process.env.SERVER_PORT);
 
 const num_processes = require("os").cpus().length;
+
 
 if (cluster.isMaster) {
     // Stores workers and references them based on source IP address.
@@ -61,25 +82,16 @@ if (cluster.isMaster) {
         // it the connection.
         var worker = workers[worker_index(connection.remoteAddress, num_processes)];
         worker.send("sticky-session:connection", connection);
-    }).listen(Port);
+    }).listen(port);
 } else {
     // No port used here because the master listens on it.
     const app = new express();
-
-
-
     /**
    * Get port from environment and store in Express.
    */
-
-    const port = normalizePort(process.env.PORT || '3000' || process.env.SERVER_PORT);
     app.set('port', port);
 
-
     // Middleware,attach (or mount) routes, etc.
-    // require('./config/env')
-
-
 
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
@@ -104,14 +116,9 @@ if (cluster.isMaster) {
     };
 
     app.use(cors(corsOptions));
-    require("./routes")(app)
-    // const routes = require("./routes");
-    // Mount Web Routes (HTTP routes to main app)
-    // app.use(require("./routes"));
-    app.get('/', (req, res, next) => {
-        res.render('index', { title: 'Ongo' });
-    })
 
+    //Mount Web Routes (HTTP routes to main app)
+    require("./routes")(app)
 
     // catch 404 and forward to error handler
     app.use(function (req, res, next) {
@@ -147,27 +154,6 @@ if (cluster.isMaster) {
     server.on('error', onError);
     server.on('listening', onListening);
 
-
-    /**
-   * Normalize a port into a number, string, or false.
-   */
-
-    function normalizePort(val) {
-        var port = parseInt(val, 10);
-
-        if (isNaN(port)) {
-            // named pipe
-            return val;
-        }
-
-        if (port >= 0) {
-            // port number
-            return port;
-        }
-
-        return false;
-    }
-
     /**
      * Event listener for HTTP server "error" event.
      */
@@ -177,7 +163,7 @@ if (cluster.isMaster) {
             throw error;
         }
 
-        var bind = typeof port === 'string'
+        const bind = typeof port === 'string'
             ? 'Pipe ' + port
             : 'Port ' + port;
 
@@ -201,13 +187,12 @@ if (cluster.isMaster) {
      */
 
     function onListening() {
-        var addr = server.address();
-        var bind = typeof addr === 'string'
+        const addr = server.address();
+        const bind = typeof addr === 'string'
             ? 'pipe ' + addr
             : 'port ' + addr.port;
         debug('Listening on ' + bind);
     }
-
 
 
     // Here you might use Socket.IO middleware for authorization etc.

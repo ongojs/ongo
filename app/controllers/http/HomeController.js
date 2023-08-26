@@ -3,17 +3,17 @@
 
 /**
  *
- * @module UsersController
+ * @module HomeController
  * @kind class
  *
  * @extends Controller
  * @requires Controller
  *
- * @classdesc UsersController class
+ * @classdesc HomeController class
  */
 
 
-class UsersController extends require("../Controller") {
+class HomeController extends require("../Controller") {
 
   constructor(...arrayOfObjects) {
 
@@ -26,9 +26,9 @@ class UsersController extends require("../Controller") {
     });
 
     // auto bind methods
-    this.autobind(UsersController);
+    this.autobind(HomeController);
     // auto invoke methods
-    this.autoinvoker(UsersController);
+    this.autoinvoker(HomeController);
     // add other classes method if methods do not already exist. Argument order matters!
     // this.methodizer(..classList);
     //Set the maximum number of listeners to infinity
@@ -52,7 +52,7 @@ class UsersController extends require("../Controller") {
    */
 
      async index(req, res, next) {
-      res.render('index', {user: [], title: 'Welcome!'});
+      res.render('index', { title: 'Ongo' });
      }
     
     
@@ -138,4 +138,4 @@ class UsersController extends require("../Controller") {
 
 }
 
-module.exports = UsersController;
+module.exports = HomeController;

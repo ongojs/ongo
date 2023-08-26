@@ -21,6 +21,6 @@ module.exports = server => {
   const io = socket(server); // socket(server = {}, options = {}) 
  
   // import routes 
-  require("./UserRoute")(io);        
+  require("./Home")(io);      
     
 }

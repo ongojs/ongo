@@ -3,16 +3,16 @@
 /**
  * @author Ericson S. Weah  <ericson.weah@ericsonweah.dev> <https://github.com/ericsonsweah>  <+1.385.436.1984>
  *
- * @module UsersController
+ * @module HomeController
  * @kind class
  *
  * @extends base
  * @requires base
  *
- * @classdesc UsersController class
+ * @classdesc HomeController class
  */
 
-class UsersController extends require("../Controller") {
+class HomeController extends require("../Controller") {
     constructor(...arrayOfObjects) {
 
         super({ objectMode: true, encoding: "utf-8", autoDestroy: true });
@@ -23,9 +23,9 @@ class UsersController extends require("../Controller") {
             }
         });
      // auto bind methods
-     this.autobind(UsersController);
+     this.autobind(HomeController);
      // auto invoke methods
-     this.autoinvoker(UsersController);
+     this.autoinvoker(HomeController);
      // add other classes method if methods do not already exist. Argument order matters!
      // this.methodizer(..classList);
      //Set the maximum number of listeners to infinity
@@ -172,4 +172,4 @@ class UsersController extends require("../Controller") {
   
 }
 
-module.exports = UsersController;
+module.exports = HomeController;

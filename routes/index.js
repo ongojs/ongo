@@ -12,7 +12,5 @@
 */
 
 module.exports = app => {
-        
-    require("./UserRoute")(app);        
-    
+    require("./Home")(app);       
 }

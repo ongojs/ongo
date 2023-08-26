@@ -1,9 +1,9 @@
 
 "use strict";
 
-const UsersController = require('../app/controllers/http/UsersController');
+const HomeController = require('../app/controllers/http/HomeController');
 
-const {index,store,show,edit,update,destroy} = new UsersController;
+const {index} = new HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +17,5 @@ const {index,store,show,edit,update,destroy} = new UsersController;
 |
 */
 module.exports = app => {
-    
-    app.get("/users", index);
-    app.post("/users", store);
-    app.get("/users/:id", show);
-    app.put("/users/:id", edit);
-    app.post("/users/:id", update);
-    app.delete("/users/:id", destroy);
-
+    app.get("/", index);
 }
