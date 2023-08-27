@@ -3614,6 +3614,11 @@ onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
+ongo@^0.0.1000:
+  version "0.0.1000"
+  resolved "https://registry.yarnpkg.com/ongo/-/ongo-0.0.1000.tgz#d340f544622d9c9965646102eb481a95b116bcbd"
+  integrity sha512-WXPEocptrIRkjfWgt72OkBt8fAMffT6WTut8o+roEc1Mm1CuEXLX/ecj0+nCghJYVS8ca8pGNSLNcrg+yTJLGA==
+
 openai@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/openai/-/openai-4.2.0.tgz#ccaef83bccad50041dd3e733e231b0c38f889b99"
