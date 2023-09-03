@@ -29,7 +29,7 @@ module.exports = (io) => {
   // HomeNamespace on connection
   const HomeOnConnection = (socket) => {
     
-    index(io, socket, sub, pub)
+    index(HomeNamespace, socket, sub, pub)
 
   };
   HomeNamespace.on("connection", HomeOnConnection);
