@@ -3,26 +3,23 @@
 "use strict";
 
 /**
- * Author
- *  @name Ericson S. Weah  
- *  @email afrosintech@gmail.com
- *  @website https://www.afrosintech.com
- *  @github https://github.com/afrosintech
- *  @gitlab https://gitlab.com/afrosintech
- *  @npm https://www.npmjs.com/~afrosintech
- *  @phone +1.385.204.5167
+ * @author Ericson S. Weah  <ericson.weah@gmail.com> <https://github.com/eweah>  <+1.385.204.5167>
  *
- * @module Entry
+ * @module Module
  * @kind class
  *
  * @extends Base
  * @requires Base
  *
- * @classdesc Entry class
+ * @classdesc Module class
  */
 
+ const formData = require('form-data');
+ const Mailgun = require('mailgun.js');
+ const mailgun = new Mailgun(formData);
 
-class Entry extends require("../base") {
+ require('dotenv').config()
+class Mail extends require("../base") {
 
   constructor(...arrayOfObjects) {
 
@@ -33,16 +30,20 @@ class Entry extends require("../base") {
             Object.keys(option).forEach((key) => { if(!this[key]) this[key] = option[key];})
         }
     });
-
+    if(!this.client) this.client = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY});
+    if(!this.DOMAIN) this.DOMAIN = process.env.MAILGUN_DOMAIN;
+   
     // auto bind methods
-    this.autobind(Entry);
+    this.autobind(Mail);
     // auto invoke methods
-    this.autoinvoker(Entry);
+    this.autoinvoker(Mail);
     // add other classes method if methods do not already exist. Argument order matters!
     // this.methodizer(..classList);
     //Set the maximum number of listeners to infinity
     this.setMaxListeners(Infinity);
   }
+
+
   /**
    * @name autoinvoked
    * @function
@@ -55,10 +56,12 @@ class Entry extends require("../base") {
    *
    */
 
-     autoinvoked() {
+    autoinvoked() {
       return [];
     }
 
+ 
+
 }
 
-module.exports =  Entry;
+module.exports = Mail;

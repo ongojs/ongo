@@ -28,7 +28,49 @@ const normalizePort = val => {
 
     return false;
 }
+const ignoreFavicon = (req, res, next) => req.originalUrl.includes('favicon.ico') ? res.status(204).send(): next()
 
+const setLocalVariables =  (err, req, res, next) => {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+}
+
+/**
+     * Event listener for HTTP server "error" event.
+     */
+
+const onError = error  => {
+    if (error.syscall !== 'listen') throw error;
+    
+    const bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
+
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+const setFlashMessages = async (req, res, next) => {
+    if(!req.session.messages) req.session.messages = [];
+    res.locals.message = req.session.messages
+    return next();
+}
 
 const port = normalizePort(process.env.PORT || '3000' || process.env.SERVER_PORT);
 

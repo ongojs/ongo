@@ -13,6 +13,7 @@
  */
 
 class HomeController extends require("../Controller") {
+    
     constructor(...arrayOfObjects) {
 
         super({ objectMode: true, encoding: "utf-8", autoDestroy: true });
